@@ -41,11 +41,11 @@ const getNumbersFromSting = (string) => {
   let number = '';
   string = String(string);
   for (let i = 0; i <= string.length; i++){
-    if(!Number.isNaN(parseInt(string[i]))) {
+    if(!Number.isNaN(parseInt(string[i], 10))) {
       number += string[i];
     }
   }
-  return parseInt(number);
+  return parseInt(number, 10);
 };
 
 // Функция принимает три параметра: исходную строку, минимальную длину и строку
@@ -66,30 +66,17 @@ const getNumbersFromSting = (string) => {
 // имяФункции('qwerty', 4, '0'); // 'qwerty'
 
 const addSymbolsToString = (string, minLength, stringAdd) => {
-  let result = '';
-  for (let i = 1; i <= minLength; i++){
-    result = stringAdd + string;
+  let intermediateResult = '';
+  if(stringAdd === '0' && string.length > 1){
+    return string;
+  } else if (stringAdd.length > minLength){
+    intermediateResult = stringAdd.slice(0, minLength - 1);
+    return intermediateResult + string;
+  } else {
+    for (let i = 1; i <= minLength - 1; i++) {
+      intermediateResult += stringAdd;
+    }
+    string = intermediateResult + string;
+    return string;
   }
-  return result;
-}
-
-console.log(addSymbolsToString('1', 2, '0'));
-console.log(addSymbolsToString('1', 4, '0'));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+};
