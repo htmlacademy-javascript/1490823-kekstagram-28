@@ -81,4 +81,4 @@ const addSymbolsToString = (string, minLength, stringAdd) => {
   return result;
 }
 
-console.log(addSymbolsToString('qwerty', 4, '0'));
+addSymbolsToString('qwerty', 4, '0');
