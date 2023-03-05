@@ -10,6 +10,8 @@
 
 const checkStringLength = (string, length) => string.length <= length;
 
+checkStringLength('проверяемая строка', 10);
+
 //Функция для проверки, является ли строка палиндромом.
 // Строка является палиндромом
 // имяФункции('топот'); // true
@@ -26,6 +28,8 @@ const checkStringPalindrome = (string) => {
   }
   return reverseString === string;
 };
+
+checkStringPalindrome('ДовОд');
 
 //Функция, принимает строку, извлекает содержащиеся в ней цифры от 0 до 9
 // и возвращает их в виде целого положительного числа.
@@ -48,6 +52,8 @@ const getNumbersFromSting = (string) => {
   return parseInt(number, 10);
 };
 
+getNumbersFromSting('1 кефир, 0.5 батона');
+
 // Функция принимает три параметра: исходную строку, минимальную длину и строку
 // с добавочными символами — и возвращает исходную строку, дополненную указанными
 // символами до заданной длины. Символы добавляются в начало строки.
@@ -66,17 +72,13 @@ const getNumbersFromSting = (string) => {
 // имяФункции('qwerty', 4, '0'); // 'qwerty'
 
 const addSymbolsToString = (string, minLength, stringAdd) => {
-  let intermediateResult = '';
-  if(stringAdd === '0' && string.length > 1){
-    return string;
-  } else if (stringAdd.length > minLength){
-    intermediateResult = stringAdd.slice(0, minLength - 1);
-    return intermediateResult + string;
-  } else {
-    for (let i = 1; i <= minLength - 1; i++) {
-      intermediateResult += stringAdd;
-    }
-    string = intermediateResult + string;
-    return string;
+  let result = string;
+  while(result.length < minLength) {
+    const newResultLength = result.length + stringAdd.length;
+    const actualPad = newResultLength <= minLength? stringAdd : stringAdd.slice(0, minLength - newResultLength);
+    result = actualPad + result;
   }
-};
+  return result;
+}
+
+addSymbolsToString('qwerty', 4, '0');
