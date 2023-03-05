@@ -71,66 +71,14 @@ getNumbersFromSting('1 кефир, 0.5 батона');
 // Добавочные символы не использованы, исходная строка не изменена
 // имяФункции('qwerty', 4, '0'); // 'qwerty'
 
-//*************************************************
-
-// const addSymbolsToString = (string, minLength, stringAdd) => {
-//   let intermediateResult = '';
-//   if(stringAdd === '0' && string.length > 1){
-//     return string;
-//   } else if (stringAdd.length > minLength){
-//     intermediateResult = stringAdd.slice(0, minLength - 1);
-//     return intermediateResult + string;
-//   } else {
-//     for (let i = 1; i <= minLength - 1; i++) {
-//       intermediateResult += stringAdd;
-//     }
-//     string = intermediateResult + string;
-//     return string;
-//   }
-// };
-//
-// addSymbolsToString('1', 4, '0');
-
 const addSymbolsToString = (string, minLength, stringAdd) => {
-  const lengthDifference = minLength - string.length;
-  if (lengthDifference <= 0){
-    return string;
-  }
-  return stringAdd.slice(0, lengthDifference % stringAdd.length) + stringAdd.repeat(lengthDifference / stringAdd.length) + string;
-};
-
-console.log(addSymbolsToString('1', 4, '0'));
-
-const addSymbolsToString1 = (string, minLength, stringAdd) => {
   let result = string;
-  while (result.length < minLength){
-    const resultLength = result.length + stringAdd.length;
-    const stringAddActual = '';
-    if(resultLenth <= minLength){
-      return stringAdd;
-    } else {
-      result = stringAddActual + result;
-    }
-    return result;
+  while(result.length < minLength) {
+    const newResultLength = result.length + stringAdd.length;
+    const actualPad = newResultLength <= minLength? stringAdd : stringAdd.slice(0, minLength - newResultLength);
+    result = actualPad + result;
   }
-};
+  return result;
+}
 
-console.log(addSymbolsToString1('qwerty', 4, '0'));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+console.log(addSymbolsToString('qwerty', 4, '0'));
