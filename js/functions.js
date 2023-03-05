@@ -75,10 +75,10 @@ const addSymbolsToString = (string, minLength, stringAdd) => {
   let result = string;
   while(result.length < minLength) {
     const newResultLength = result.length + stringAdd.length;
-    const actualPad = newResultLength <= minLength? stringAdd : stringAdd.slice(0, minLength - newResultLength);
+    const actualPad = newResultLength <= minLength ? stringAdd : stringAdd.slice(0, minLength - newResultLength);
     result = actualPad + result;
   }
   return result;
-}
+};
 
 addSymbolsToString('qwerty', 4, '0');
