@@ -56,4 +56,4 @@ const getCommentsArray = () =>{
   }
   return commentsArray;
 };
-console.log(getCommentsArray());
+getCommentsArray();
