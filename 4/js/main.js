@@ -1,7 +1,8 @@
 const PICTURES = 25;
-const AVATARS = 6;
 const LIKES_MIN = 15;
 const LIKES_MAX = 200;
+const AVATARS = 6;
+const COMMENTS = 10;
 
 const COMMENTS_ARRAY = [
   'Всё отлично!',
@@ -32,6 +33,16 @@ const AUTHORS_ARRAY = [
   'Наташа', 'Алексей', 'Ирина'
 ];
 
+function getCounter() {
+  let count = 1;
+  return function() {
+    return count++;
+  };
+}
+const getId = getCounter();
+const getCommentId = getCounter();
+const getUrl = getCounter();
+
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -39,21 +50,34 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
-const createComment = (step) => ({
-  id: step + 1,
-  url: `photos/${step + 1}.jpg`,
+const getComment = () => ({
+  id: getCommentId(),
   avatar: `img/avatar-${[getRandomInteger(0, AVATARS)]}.svg`,
   message: COMMENTS_ARRAY[getRandomInteger(0, COMMENTS_ARRAY.length - 1)],
-  name: AUTHORS_ARRAY[getRandomInteger(0, AUTHORS_ARRAY.length - 1)],
-  likes: getRandomInteger(LIKES_MIN, LIKES_MAX),
-  description: SIGNATURE_ARRAY[getRandomInteger(0, SIGNATURE_ARRAY.length - 1)]
+  name: AUTHORS_ARRAY[getRandomInteger(0, AUTHORS_ARRAY.length - 1)]
 });
 
-const getCommentsArray = () =>{
+const createCommentsArray = () => {
   const commentsArray = [];
-  for (let i = 0; i < PICTURES; i++) {
-    commentsArray[i] = createComment(i);
+  for (let i = 0; i < COMMENTS; i++) {
+    commentsArray[i] = getComment();
   }
   return commentsArray;
 };
-getCommentsArray();
+
+const getObject = () => ({
+  id: getId(),
+  url: `photos/${getUrl()}.jpg`,
+  likes:  getRandomInteger(LIKES_MIN, LIKES_MAX),
+  description: SIGNATURE_ARRAY[getRandomInteger(0, SIGNATURE_ARRAY.length - 1)],
+  comments: createCommentsArray()
+});
+
+const getObjectsArray = () =>{
+  const objectsArray = [];
+  for (let i = 0; i < PICTURES; i++) {
+    objectsArray[i] = getObject();
+  }
+  return objectsArray;
+};
+getObjectsArray();
