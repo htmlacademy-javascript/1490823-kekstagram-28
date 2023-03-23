@@ -33,16 +33,19 @@ const AUTHORS_ARRAY = [
   'Наташа', 'Алексей', 'Ирина'
 ];
 
+//Счетчик для формирования нумерации ID...
 function getCounter() {
   let count = 1;
   return function() {
     return count++;
   };
 }
+
 const getId = getCounter();
 const getCommentId = getCounter();
 const getUrl = getCounter();
 
+//Генератор случайных чисел...
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -50,6 +53,7 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
+// Функция формирует объект с комментариями...
 const getComment = () => ({
   id: getCommentId(),
   avatar: `img/avatar-${[getRandomInteger(0, AVATARS)]}.svg`,
@@ -57,6 +61,7 @@ const getComment = () => ({
   name: AUTHORS_ARRAY[getRandomInteger(0, AUTHORS_ARRAY.length - 1)]
 });
 
+//Функция формирует массив объектов с комментариями...
 const createCommentsArray = () => {
   const commentsArray = [];
   for (let i = 0; i < COMMENTS; i++) {
@@ -65,6 +70,7 @@ const createCommentsArray = () => {
   return commentsArray;
 };
 
+//Функция формирует объект с описанием фото и комментарием...
 const getObject = () => ({
   id: getId(),
   url: `photos/${getUrl()}.jpg`,
@@ -73,6 +79,7 @@ const getObject = () => ({
   comments: createCommentsArray()
 });
 
+//Функция формирует массив объектов с описанием фото (25 объектов)...
 const getObjectsArray = () =>{
   const objectsArray = [];
   for (let i = 0; i < PICTURES; i++) {
@@ -80,4 +87,5 @@ const getObjectsArray = () =>{
   }
   return objectsArray;
 };
+
 getObjectsArray();
