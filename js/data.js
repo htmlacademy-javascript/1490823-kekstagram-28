@@ -1,5 +1,5 @@
-import {getRandomInteger} from './utils';
-import {getCounter} from './utils';
+import {getRandomInteger} from './utils.js';
+import {getCounter} from './utils.js';
 
 const PICTURES = 25;
 const LIKES_MIN = 15;
@@ -76,4 +76,4 @@ const getObjectsArray = () =>{
   return objectsArray;
 };
 
-getObjectsArray();
+console.log(getObjectsArray());
