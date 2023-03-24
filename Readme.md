@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Алексей Филипчик](https://up.htmlacademy.ru/javascript/28/user/1490823).
-* Наставник: [Максим Прусаков](https://htmlacademy.ru/profile/hikikomori).
+* Наставник: [Ольга Юзич](https://htmlacademy.ru/profile/id350391).
 
 ---
 
