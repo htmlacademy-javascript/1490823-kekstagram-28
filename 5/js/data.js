@@ -76,4 +76,4 @@ const getObjectsArray = () =>{
   return objectsArray;
 };
 
-console.log(getObjectsArray());
+getObjectsArray();
